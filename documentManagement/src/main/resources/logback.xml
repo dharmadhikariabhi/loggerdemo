@@ -1,0 +1,26 @@
+<configuration>
+
+    <!-- Rolling file appender (creates new file every minute) -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- Current log file -->
+        <file>D:/logs/application.log</file>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+
+        <!-- Added rolling policy -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- New file every minute -->
+            <fileNamePattern>D:/logs/application-%d{yyyy-MM-dd_HH-mm}.log</fileNamePattern>
+
+            <!-- Keep logs for 60 minutes (1 hour) -->
+            <maxHistory>1 </maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <root level="TRACE">
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
